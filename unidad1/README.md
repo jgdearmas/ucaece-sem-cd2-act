@@ -148,6 +148,16 @@ GitHub: **no hace falta subir nada a Google Drive** en ningún paso.
 1. Commiteá tu código, el notebook ejecutado y `evidencias.md`.
 2. Completá este README (o un archivo aparte) resumiendo: caso de uso elegido, modelo
    elegido y estrategia de adaptación.
+
+## Caso de uso, modelo y estrategia de adaptación
+
+**Caso de uso:** Asistente conversacional interno para consultas sobre funcionalidades de Aura Gestiona, disponible bajo demanda para los ejecutivos comerciales de GIRE/Oneclick. Permite resolver dudas puntuales sobre el producto en cualquier momento — antes de una reunión con un cliente, o al capacitar a un ejecutivo nuevo — sin depender de la disponibilidad de quien lidera las capacitaciones.
+
+**Modelo elegido:** modelo de pesos abiertos (Llama / Mistral), servido a través de la API de Groq sobre su hardware propietario LPU. Se prioriza sobre un modelo cerrado por la baja latencia que exige el caso de uso (consulta justo antes de una reunión) y por dejar abierta la posibilidad de especializar el modelo a futuro (PEFT) sin depender de un único proveedor.
+
+**Estrategia de adaptación:** prompt engineering avanzado, combinando few-shot prompting con chain-of-thought (few-shot CoT, según Wei et al., 2022). Cada ejemplo del prompt incluye el razonamiento paso a paso antes de la respuesta final, en lugar de solo la respuesta. Se descarta el fine-tuning (full y PEFT) porque el problema es de inyección de conocimiento acotado sobre un producto interno, no de ajuste de estilo, y un entrenamiento sobre pocos ejemplos no garantiza que el modelo incorpore esos hechos de forma confiable.
+
+
 3. En el documento entregado (Word/PDF con las consignas 1 a 5), incluí el enlace a tu
    repositorio y capturas de una ejecución exitosa.
 
